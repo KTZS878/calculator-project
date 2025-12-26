@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科学计算器</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 科学计算器</h1>
+            <p class="subtitle">C语言核心 + Python后端 + Web前端</p>
+        </header>
+
+        <div class="main-content">
+            <div class="calculator-section">
+                <div class="calculator">
+                    <div class="display">
+                        <div class="expression" id="expression">0</div>
+                        <div class="result" id="result">准备就绪</div>
+                    </div>
+
+                    <div class="buttons">
+                        <!-- 第一行 -->
+                        <button class="btn btn-clear" onclick="clearDisplay()">AC</button>
+                        <button class="btn btn-operator" onclick="appendOperator('(')">(</button>
+                        <button class="btn btn-operator" onclick="appendOperator(')')">)</button>
+                        <button class="btn btn-operator" onclick="appendOperator('/')">÷</button>
+
+                        <!-- 第二行 -->
+                        <button class="btn btn-function" onclick="appendFunction('sin')">sin</button>
+                        <button class="btn btn-number" onclick="appendNumber('7')">7</button>
+                        <button class="btn btn-number" onclick="appendNumber('8')">8</button>
+                        <button class="btn btn-number" onclick="appendNumber('9')">9</button>
+
+                        <!-- 第三行 -->
+                        <button class="btn btn-function" onclick="appendFunction('cos')">cos</button>
+                        <button class="btn btn-number" onclick="appendNumber('4')">4</button>
+                        <button class="btn btn-number" onclick="appendNumber('5')">5</button>
+                        <button class="btn btn-number" onclick="appendNumber('6')">6</button>
+
+                        <!-- 第四行 -->
+                        <button class="btn btn-function" onclick="appendFunction('tan')">tan</button>
+                        <button class="btn btn-number" onclick="appendNumber('1')">1</button>
+                        <button class="btn btn-number" onclick="appendNumber('2')">2</button>
+                        <button class="btn btn-number" onclick="appendNumber('3')">3</button>
+
+                        <!-- 第五行 -->
+                        <button class="btn btn-function" onclick="appendFunction('sqrt')">√</button>
+                        <button class="btn btn-number" onclick="appendNumber('0')">0</button>
+                        <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+                        <button class="btn btn-operator" onclick="appendOperator('*')">×</button>
+
+                        <!-- 第六行 -->
+                        <button class="btn btn-function" onclick="appendOperator('^')">x^y</button>
+                        <button class="btn btn-function" onclick="appendFunction('ln')">ln</button>
+                        <button class="btn btn-function" onclick="appendFunction('log')">log</button>
+                        <button class="btn btn-operator" onclick="appendOperator('-')">-</button>
+
+                        <!-- 第七行 -->
+                        <button class="btn btn-delete" onclick="deleteLastChar()">⌫</button>
+                        <button class="btn btn-constant" onclick="appendNumber('3.14159')">π</button>
+                        <button class="btn btn-constant" onclick="appendNumber('2.71828')">e</button>
+                        <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+
+                        <!-- 等号（跨列） -->
+                        <button class="btn btn-equals" onclick="calculate()" style="grid-column: span 4;">=</button>
+                    </div>
+                </div>
+
+                <div class="status">
+                    <span id="status-indicator" class="status-dot offline"></span>
+                    <span id="status-text">未连接服务器</span>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>📜 计算历史</h2>
+                    <button class="btn-small btn-danger" onclick="clearHistory()">清空</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="no-history">暂无历史记录</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="instructions">
+            <h3>📖 使用说明</h3>
+            <ul>
+                <li><strong>基本运算：</strong>直接点击数字和运算符（+、-、×、÷）</li>
+                <li><strong>科学函数：</strong>点击函数后自动添加括号，如 sin(30)</li>
+                <li><strong>幂运算：</strong>输入底数 → 点击x^y → 输入指数，如 2^8</li>
+                <li><strong>常数：</strong>π≈3.14159, e≈2.71828</li>
+                <li><strong>清除：</strong>AC清空全部，⌫删除最后一个字符</li>
+            </ul>
+        </footer>
+    </div>
+
+    <script src="/static/js/calculator.js"></script>
+</body>
+</html>

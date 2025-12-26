@@ -1,0 +1,19 @@
+[Unit]
+Description=Calculator Web Application
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/calculator-web
+Environment="PATH=/root/calculator:/usr/bin:/usr/local/bin"
+ExecStart=/usr/local/bin/gunicorn -w 4 -b 0.0.0.0:5000 --timeout 120 --access-logfile /root/calculator-web/gunicorn-access.log --error-logfile /root/calculator-web/gunicorn-error.log app:app
+Restart=always
+RestartSec=10
+RuntimeMaxSec=86400
+MemoryLimit=512M
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
